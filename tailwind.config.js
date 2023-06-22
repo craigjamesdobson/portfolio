@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-         'hero': "url('./src/assets/overlay.svg')",
+         'hero': "url('/images/overlay.svg')",
       },
     },
   },
