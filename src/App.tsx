@@ -1,9 +1,8 @@
 import "./App.css";
 import Router from "./routes";
 import meImage from "./assets/me.jpg";
+import overlaySVG from "./assets/overlay.svg";
 import Nav from "./components/nav";
-
-console.log(meImage);
 
 function App() {
   return (
