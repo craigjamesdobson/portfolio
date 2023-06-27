@@ -8,9 +8,9 @@ function Hero() {
     <>
       <div className="absolute inset-0 opacity-10 bg-hero"></div>
       <div className="container relative z-10 flex items-center flex-1 px-10 mx-auto">
-        <Fade delay={250} direction="up" triggerOnce>
-          <div className="grid items-center gap-20 py-10 lg:grid-cols-3">
-            <div className=" lg:col-span-2">
+        <div className="grid items-center gap-20 py-10 lg:grid-cols-3">
+          <div className=" lg:col-span-2">
+            <Fade cascade delay={250} direction="up" triggerOnce>
               <h1 className="mb-20 font-bold text-white text-8xl">
                 Hi, i'm
                 <span className="px-1 font-bold underline-highlight">
@@ -30,14 +30,16 @@ function Hero() {
               <button className="animated-button">
                 <div className="inner">My Resume</div>
               </button>
-            </div>
+            </Fade>
+          </div>
+          <Fade delay={250} direction="up" triggerOnce>
             <img
               className="order-2 w-full max-w-full p-10 rounded-full lg:order-last"
               src={meImage}
               alt="Me!"
             />
-          </div>
-        </Fade>
+          </Fade>
+        </div>
       </div>
     </>
   );
