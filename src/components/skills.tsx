@@ -32,7 +32,13 @@ function Hero() {
           {portfolioSkills.map((item, index) => {
             return (
               <div key={index}>
-                <Fade delay={1000 * index} direction="down" triggerOnce>
+                <Fade
+                  className="opacity-0"
+                  key={index}
+                  delay={1000 * index}
+                  direction="down"
+                  triggerOnce
+                >
                   <div className="inline-flex flex-col mb-10">
                     <h3 className="mb-5 text-3xl font-light tracking-widest text-white uppercase">
                       {item.title}
@@ -41,7 +47,12 @@ function Hero() {
                   </div>
                 </Fade>
                 <div className="flex flex-row flex-wrap gap-10 mb-10">
-                  <Fade delay={1000 * index} cascade direction="right">
+                  <Fade
+                    className="opacity-0"
+                    triggerOnce
+                    delay={1000 * index}
+                    cascade
+                  >
                     {item.skills.map((skill, index) => {
                       return (
                         <SvgIcon
@@ -62,11 +73,11 @@ function Hero() {
           })}
         </div>
         <Fade triggerOnce direction="down" duration={2500}>
-        <img
-          className="w-full max-w-full p-10"
-          src={skillsSvg}
-          alt="Skills Illustration"
-        />
+          <img
+            className="w-full max-w-full p-10"
+            src={skillsSvg}
+            alt="Skills Illustration"
+          />
         </Fade>
       </div>
     </>

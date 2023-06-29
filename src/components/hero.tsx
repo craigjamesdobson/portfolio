@@ -1,7 +1,5 @@
-import meImage from "../assets/me.jpg";
+import portfolioImage from "../assets/me.jpg";
 import { Fade } from "react-awesome-reveal";
-
-console.log(meImage);
 
 function Hero() {
   return (
@@ -35,7 +33,7 @@ function Hero() {
           <Fade delay={250} direction="up" triggerOnce>
             <img
               className="order-2 w-full max-w-full p-10 rounded-full lg:order-last"
-              src={meImage}
+              src={portfolioImage}
               alt="Me!"
             />
           </Fade>
