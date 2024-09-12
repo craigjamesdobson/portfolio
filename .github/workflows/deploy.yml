@@ -19,17 +19,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.6.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Debug REMOTE_HOST
-        env:
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        run: |
-          echo "REMOTE_HOST is set to '$REMOTE_HOST'"
-          if [ -z "$REMOTE_HOST" ]; then
-            echo "REMOTE_HOST is not set. Please check your secrets."
-            exit 1
-          fi
-
+          
       - name: DNS Resolution
         env:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
