@@ -4,8 +4,8 @@ on:
   push:
     tags:
       - 'v*.*.*'
-    branches:
-      - main
+    branches-ignore:
+      - '*'  # This ensures that branch pushes do not trigger the workflow
 
 jobs:
   deploy:
