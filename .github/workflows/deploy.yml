@@ -21,16 +21,30 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Debug REMOTE_HOST
-        run: echo "$REMOTE_HOST"
+        run: |
+          echo "REMOTE_HOST is set to '$REMOTE_HOST'"
+          if [ -z "$REMOTE_HOST" ]; then
+            echo "REMOTE_HOST is not set. Please check your secrets."
+            exit 1
+          fi
 
       - name: Check connectivity
-        run: ping -c 4 "$REMOTE_HOST"
+        run: |
+          if [ -z "$REMOTE_HOST" ]; then
+            echo "REMOTE_HOST is not set. Skipping connectivity check."
+          else
+            ping -c 4 "$REMOTE_HOST"
+          fi
 
       - name: Create .ssh directory
         run: mkdir -p ~/.ssh
 
       - name: Add remote server to known_hosts
         run: |
+          if [ -z "$REMOTE_HOST" ]; then
+            echo "REMOTE_HOST is not set. Skipping known_hosts update."
+            exit 1
+          fi
           ssh-keyscan -H "$REMOTE_HOST" >> ~/.ssh/known_hosts || echo "ssh-keyscan failed"
 
       - name: Deploy to Server
