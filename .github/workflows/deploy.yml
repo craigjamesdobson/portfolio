@@ -30,15 +30,21 @@ jobs:
             exit 1
           fi
 
-      - name: Check connectivity
+      - name: DNS Resolution
         env:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         run: |
-          if [ -z "$REMOTE_HOST" ]; then
-            echo "REMOTE_HOST is not set. Skipping connectivity check."
+          if [[ "$REMOTE_HOST" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Skipping DNS resolution for IP address."
           else
-            ping -c 4 "$REMOTE_HOST"
+            nslookup "$REMOTE_HOST"
           fi
+
+      - name: Check Port Connectivity
+        env:
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        run: |
+          nc -zv "$REMOTE_HOST" 22 || echo "Port 22 is not open on $REMOTE_HOST"
 
       - name: Create .ssh directory
         run: mkdir -p ~/.ssh
