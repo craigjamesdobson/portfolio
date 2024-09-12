@@ -55,4 +55,4 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_DIR: ${{ secrets.REMOTE_DIR }}
         run: |
-          rsync -avz -O --delete --exclude='.git' --exclude='.github' ./ "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR"
+          rsync -avz -O --delete --exclude='.git' --exclude='.github' --no-perms ./ "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR"
