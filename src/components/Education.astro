@@ -1,0 +1,21 @@
+---
+type Props = {
+  items: readonly string[];
+};
+
+const { items } = Astro.props as Props;
+---
+
+<section id="education" class="scroll-mt-20 mt-14 reveal" style="--delay: 320ms;">
+  <h2 class="section-title">education and credentials</h2>
+  <ul class="space-y-3 border border-border p-4 text-[0.85rem] leading-7 opacity-70">
+    {
+      items.map((item) => (
+        <li class="flex gap-3">
+          <span class="text-accent" aria-hidden="true">-</span>
+          <span>{item}</span>
+        </li>
+      ))
+    }
+  </ul>
+</section>

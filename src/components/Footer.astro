@@ -1,0 +1,28 @@
+---
+import type { ContactLink } from "../data/cv";
+
+type Props = {
+  availability: string;
+  links: readonly ContactLink[];
+};
+
+const { availability, links } = Astro.props as Props;
+---
+
+<footer id="contact" class="my-20 border-t border-border pt-8 text-sm grid grid-cols-1 gap-3 place-items-center reveal" style="--delay: 380ms;">
+  <p class="text-[0.78rem] uppercase tracking-[0.12em] opacity-55">Get in touch</p>
+  <p class="max-w-2xl text-center text-[0.82rem] opacity-60">{availability}</p>
+  <div class="flex flex-wrap justify-center gap-4 text-[0.85rem] [&_a]:opacity-70 [&_a]:hover:opacity-100 [&_a]:transition-colors [&_a]:duration-200">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noreferrer noopener" : undefined}
+          >
+            {link.label}
+          </a>
+        ))
+      }
+  </div>
+</footer>
