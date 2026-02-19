@@ -1,5 +1,6 @@
 ---
 import type { ContactLink } from "../data/cv";
+import ContactIcon from "./ContactIcon.astro";
 import Logo from "./Logo.astro";
 
 type NavItem = {
@@ -75,17 +76,7 @@ const mobileNavId = "mobile-nav-panel";
               rel={link.href.startsWith("http") ? "noreferrer noopener" : undefined}
               data-mobile-nav-link
             >
-              {isEmail ? (
-                <svg class="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-                  <path d="m3 7 9 6 9-6"></path>
-                </svg>
-              ) : (
-                <svg class="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M9 19c-5 1.5-5-2.5-7-3"></path>
-                  <path d="M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7a5.44 5.44 0 0 0-1.5-3.75 5.07 5.07 0 0 0-.09-3.77s-1.18-.35-3.91 1.48a13.38 13.38 0 0 0-7 0C4.32.65 3.14 1 3.14 1A5.07 5.07 0 0 0 3 4.77 5.44 5.44 0 0 0 1.5 8.52c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.61V22"></path>
-                </svg>
-              )}
+              <ContactIcon kind={isEmail ? "email" : "github"} class="h-4 w-4 text-accent" />
               <span>{link.label}</span>
             </a>
           );
@@ -120,17 +111,7 @@ const mobileNavId = "mobile-nav-panel";
             target={link.href.startsWith("http") ? "_blank" : undefined}
             rel={link.href.startsWith("http") ? "noreferrer noopener" : undefined}
           >
-            {isEmail ? (
-              <svg class="h-5 w-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-                <path d="m3 7 9 6 9-6"></path>
-              </svg>
-            ) : (
-              <svg class="h-5 w-5 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M9 19c-5 1.5-5-2.5-7-3"></path>
-                <path d="M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7a5.44 5.44 0 0 0-1.5-3.75 5.07 5.07 0 0 0-.09-3.77s-1.18-.35-3.91 1.48a13.38 13.38 0 0 0-7 0C4.32.65 3.14 1 3.14 1A5.07 5.07 0 0 0 3 4.77 5.44 5.44 0 0 0 1.5 8.52c0 5.42 3.3 6.61 6.44 7a3.37 3.37 0 0 0-.94 2.61V22"></path>
-              </svg>
-            )}
+            <ContactIcon kind={isEmail ? "email" : "github"} class="h-5 w-5 text-accent" />
             <span class="sr-only">{link.label}</span>
           </a>
         );

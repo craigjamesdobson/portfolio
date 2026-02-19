@@ -10,6 +10,9 @@ const { title, description } = Astro.props as Props;
 const canonicalUrl = Astro.site
   ? new URL(Astro.url.pathname, Astro.site).toString()
   : Astro.url.toString();
+const socialImageUrl = Astro.site
+  ? new URL("/web-app-manifest-512x512.png", Astro.site).toString()
+  : new URL("/web-app-manifest-512x512.png", Astro.url).toString();
 ---
 
 <!doctype html>
@@ -23,9 +26,13 @@ const canonicalUrl = Astro.site
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content="Craig Dobson portfolio logo" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content="Craig Dobson portfolio logo" />
     <meta name="theme-color" content="#231f2a" />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />

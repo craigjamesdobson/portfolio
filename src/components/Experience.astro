@@ -12,7 +12,7 @@ const { entries } = Astro.props as Props;
   <h2 class="section-title">experience</h2>
   <div class="space-y-5">
     {
-      entries.map((entry) => (
+      entries.map((entry, index) => (
         <article>
           <div class="mb-3 space-y-1 text-[0.95rem]">
             <p class="opacity-50 text-[0.8rem] uppercase tracking-[0.08em]">{entry.period}</p>
@@ -32,7 +32,7 @@ const { entries } = Astro.props as Props;
               ))
             }
           </ul>
-          <div class="h-px bg-border my-6"></div>
+          {index < entries.length - 1 && <div class="h-px bg-border my-6"></div>}
         </article>
       ))
     }

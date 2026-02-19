@@ -7,7 +7,6 @@
   --primary-foreground: oklch(14% 0.01 24);
   --secondary: oklch(22% 0.016 285);
   --secondary-foreground: oklch(94% 0.012 285);
-  --muted: oklch(62% 0.02 285);
   --muted-foreground: oklch(62% 0.02 285);
   --accent: oklch(58% 0.18 24);
   --accent-foreground: oklch(14% 0.01 24);
@@ -21,7 +20,6 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);

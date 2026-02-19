@@ -5,13 +5,13 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Install pnpm globally
-RUN npm install -g pnpm
+RUN npm install -g pnpm serve
 
 # Copy package.json and pnpm-lock.yaml (pnpm's lock file) first to leverage Docker cache
 COPY package.json pnpm-lock.yaml ./
 
 # Install dependencies using pnpm
-RUN pnpm install
+RUN pnpm install --frozen-lockfile
 
 # Copy the rest of the project files
 COPY . .
@@ -23,4 +23,4 @@ RUN pnpm run build
 EXPOSE 3000
 
 # Start the Astro project in production mode
-CMD ["pnpm", "preview"]
+CMD ["serve", "-s", "dist", "-l", "3000"]
