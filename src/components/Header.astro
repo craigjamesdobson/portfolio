@@ -1,0 +1,179 @@
+---
+import type { ContactLink } from "../data/cv";
+import ContactIcon from "./ContactIcon.astro";
+import Logo from "./Logo.astro";
+
+type NavItem = {
+  href: string;
+  label: string;
+};
+
+type Props = {
+  navItems: readonly NavItem[];
+  contactLinks: readonly ContactLink[];
+};
+
+const { navItems, contactLinks } = Astro.props as Props;
+const compactLinks = contactLinks.filter((link) => {
+  const key = link.label.toLowerCase();
+  return key === "email" || key === "github";
+});
+
+const mobileNavId = "mobile-nav-panel";
+---
+
+<header class="py-6 md:py-12 border-b border-border/40" data-mobile-nav>
+  <div class="flex items-center justify-between md:hidden">
+    <a href="#about" class="inline-flex items-center" aria-label="Go to top section">
+      <Logo size="sm" />
+    </a>
+    <button
+      type="button"
+      class="inline-flex items-center justify-center border border-border p-2 opacity-75 transition-opacity duration-200 hover:opacity-100"
+      aria-expanded="false"
+      aria-label="Open navigation menu"
+      aria-controls={mobileNavId}
+      data-mobile-nav-button
+    >
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="4" y1="6" x2="20" y2="6"></line>
+        <line x1="4" y1="12" x2="20" y2="12"></line>
+        <line x1="4" y1="18" x2="20" y2="18"></line>
+      </svg>
+      <span class="sr-only">Toggle navigation menu</span>
+    </button>
+  </div>
+
+  <div
+    id={mobileNavId}
+    class="mobile-nav-panel md:hidden mt-3 border border-border/70"
+    data-mobile-nav-panel
+    aria-hidden="true"
+    inert
+  >
+    <nav class="flex flex-col" aria-label="Primary">
+      {
+        navItems.map((item) => (
+          <a
+            class="border-b border-border/60 px-3 py-2 text-[0.86rem] opacity-70 transition-opacity duration-200 hover:opacity-100 last:border-b-0"
+            href={item.href}
+            data-mobile-nav-link
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="flex flex-wrap gap-3 border-t border-border/60 px-3 py-3">
+      {
+        compactLinks.map((link) => {
+          const isEmail = link.label.toLowerCase() === "email";
+          return (
+            <a
+              class="inline-flex items-center gap-2 border border-border/70 px-2.5 py-1.5 text-[0.8rem] opacity-75 transition-opacity duration-200 hover:opacity-100"
+              href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noreferrer noopener" : undefined}
+              data-mobile-nav-link
+            >
+              <ContactIcon kind={isEmail ? "email" : "github"} class="h-4 w-4 text-accent" />
+              <span>{link.label}</span>
+            </a>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  <div class="hidden md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-7">
+    <a href="#about" class="inline-flex items-center md:justify-self-start" aria-label="Go to top section">
+      <Logo />
+    </a>
+    <nav class="flex flex-wrap justify-center gap-x-5 gap-y-2 text-[0.9rem]">
+      {
+        navItems.map((item) => (
+          <a class="opacity-60 transition-all duration-200 hover:opacity-100" href={item.href}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="flex items-center gap-3 md:justify-self-end">
+    {
+      compactLinks.map((link) => {
+        const isEmail = link.label.toLowerCase() === "email";
+        return (
+          <a
+            class="opacity-60 transition-all duration-200 hover:opacity-100"
+            href={link.href}
+            aria-label={link.label}
+            title={link.label}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noreferrer noopener" : undefined}
+          >
+            <ContactIcon kind={isEmail ? "email" : "github"} class="h-5 w-5 text-accent" />
+            <span class="sr-only">{link.label}</span>
+          </a>
+        );
+      })
+    }
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  const root = document.querySelector("[data-mobile-nav]");
+
+  if (root) {
+    const button = root.querySelector("[data-mobile-nav-button]");
+    const panel = root.querySelector("[data-mobile-nav-panel]");
+    const links = root.querySelectorAll("[data-mobile-nav-link]");
+    const desktop = window.matchMedia("(min-width: 768px)");
+
+    const closeMenu = () => {
+      if (!button || !panel) {
+        return;
+      }
+
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-label", "Open navigation menu");
+      panel.classList.remove("is-open");
+      panel.setAttribute("aria-hidden", "true");
+      panel.setAttribute("inert", "");
+    };
+
+    const toggleMenu = () => {
+      if (!button || !panel) {
+        return;
+      }
+
+      const isOpen = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", isOpen ? "false" : "true");
+      panel.classList.toggle("is-open", !isOpen);
+      panel.setAttribute("aria-hidden", isOpen ? "true" : "false");
+
+      if (isOpen) {
+        button.setAttribute("aria-label", "Open navigation menu");
+        panel.setAttribute("inert", "");
+      } else {
+        button.setAttribute("aria-label", "Close navigation menu");
+        panel.removeAttribute("inert");
+      }
+    };
+
+    button?.addEventListener("click", toggleMenu);
+    links.forEach((link) => link.addEventListener("click", closeMenu));
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    });
+
+    desktop.addEventListener("change", (event) => {
+      if (event.matches) {
+        closeMenu();
+      }
+    });
+  }
+</script>

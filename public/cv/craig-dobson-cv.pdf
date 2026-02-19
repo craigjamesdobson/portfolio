@@ -1,0 +1,260 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R 7 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 9 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 2493 >>
+stream
+BT
+/F1 11 Tf
+14 TL
+50 760 Td
+(Craig Dobson) Tj
+T*
+() Tj
+T*
+(Senior Web Developer) Tj
+T*
+() Tj
+T*
+(Somerset, UK) Tj
+T*
+() Tj
+T*
+(dobson.cj@gmail.com  |  GitHub) Tj
+T*
+() Tj
+T*
+(PROFILE) Tj
+T*
+() Tj
+T*
+(Senior web developer with over ten years' experience building and maintaining production) Tj
+T*
+(ecommerce systems in agency and product contexts. Frontend-focused with a strong full-stack) Tj
+T*
+(foundation, progressing from client-facing features to broader backend responsibilities) Tj
+T*
+(across a .NET and SQL Server stack over a ten-year period. Experienced in evolving legacy) Tj
+T*
+(platforms, leading the adoption of modern JavaScript frameworks, and delivering Shopify) Tj
+T*
+(solutions for businesses ranging from early-stage startups to Shopify Plus clients. Actively) Tj
+T*
+(builds and maintains full-stack JavaScript and TypeScript applications outside of work.) Tj
+T*
+() Tj
+T*
+(EXPERIENCE) Tj
+T*
+() Tj
+T*
+(Senior Web Developer |  Webselect) Tj
+T*
+() Tj
+T*
+(May 2014 - Present) Tj
+T*
+() Tj
+T*
+(- Owned and maintained the client-facing frontend of a bespoke ecommerce SaaS platform used) Tj
+T*
+(by hundreds of businesses across retail, food, and agriculture sectors) Tj
+T*
+() Tj
+T*
+(- Led the Vue.js architectural design and implementation for rebuilding a legacy CMS) Tj
+T*
+(frontend, now live and actively used by clients, including component structure, state) Tj
+T*
+(management, team training, and documentation) Tj
+T*
+() Tj
+T*
+(- Designed and implemented bespoke frontend features for established, high-revenue clients) Tj
+T*
+(while maintaining shared code quality, accessibility standards, and consistency across the) Tj
+T*
+(platform) Tj
+T*
+() Tj
+T*
+(- Managed client relationships across a portfolio of accounts, leading technical calls,) Tj
+T*
+(handling support queries, and ensuring clear communication of technical decisions to) Tj
+T*
+(non-technical stakeholders) Tj
+T*
+() Tj
+T*
+(- Evolved into full-stack responsibilities, building CRUD functionality, extending database) Tj
+T*
+(schemas, and integrating frontend features with a .NET backend and SQL Server database) Tj
+T*
+() Tj
+T*
+(- Became the primary technical lead for Shopify work, delivering new storefronts for small) Tj
+T*
+(businesses and ongoing development and support for larger Shopify Plus clients) Tj
+T*
+() Tj
+T*
+(- Prototyped internal React-based tools, Shopify apps, and transactional email templates) Tj
+T*
+(using React Email to explore bespoke solutions within the Shopify ecosystem) Tj
+T*
+() Tj
+T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 6 0 R /Resources << /Font << /F1 9 0 R >> >> >>
+endobj
+6 0 obj
+<< /Length 2183 >>
+stream
+BT
+/F1 11 Tf
+14 TL
+50 760 Td
+(Independent Full-Stack Project  |  Fantasy Football Web Application) Tj
+T*
+() Tj
+T*
+(Ongoing) Tj
+T*
+() Tj
+T*
+(- Designed and built a long-running fantasy football application used by 50+ active) Tj
+T*
+(participants, built with Nuxt 3, Vue 3 Composition API, TypeScript, and Supabase, utilizing) Tj
+T*
+(Pinia for state management and server-side rendering for optimal performance) Tj
+T*
+() Tj
+T*
+(- Led architectural progression over multiple iterations, including a Vue.js frontend) Tj
+T*
+(rebuild, persistent data storage, and admin-only tooling for managing teams, fixtures, and) Tj
+T*
+(results) Tj
+T*
+() Tj
+T*
+(- Implemented a deliberately simple authentication model with administrator-only access,) Tj
+T*
+(aligned with the application's usage patterns and risk profile) Tj
+T*
+() Tj
+T*
+(- Integrated automated transactional and service emails using React Email and Resend) Tj
+T*
+() Tj
+T*
+(- Continue to maintain and extend the system based on real usage and feedback rather than) Tj
+T*
+(speculative features) Tj
+T*
+() Tj
+T*
+(Web Administrator  |  Thinkology) Tj
+T*
+() Tj
+T*
+(July 2013 - April 2014) Tj
+T*
+() Tj
+T*
+(Supported website delivery across content gathering, build, launch, and maintenance using) Tj
+T*
+(proprietary ASP-based CMS, Umbraco, HTML, and CSS) Tj
+T*
+() Tj
+T*
+(TECHNICAL FOCUS) Tj
+T*
+() Tj
+T*
+(Languages: JavaScript, TypeScript, C# \(.NET\), HTML, CSS) Tj
+T*
+() Tj
+T*
+(Frameworks: Vue.js, React, Nuxt, .NET, component-based SPA and SSR architecture) Tj
+T*
+() Tj
+T*
+(Ecommerce: Shopify, Shopify Plus, Liquid, theme and app development) Tj
+T*
+() Tj
+T*
+(Databases: PostgreSQL, SQL Server, SQLite, Prisma, Drizzle ORM) Tj
+T*
+() Tj
+T*
+(Infrastructure: Cloudflare, DNS management, environment-level setup for web applications) Tj
+T*
+() Tj
+T*
+(Standards: Accessibility, performance optimisation, responsive design) Tj
+T*
+() Tj
+T*
+(Tooling: Git, GitHub Actions \(CI/CD\), Docker, AI-assisted development tools) Tj
+T*
+() Tj
+T*
+(EDUCATION AND CREDENTIALS) Tj
+T*
+() Tj
+T*
+(Shopify Development Fundamentals - Shopify Academy) Tj
+T*
+(BTEC National Diploma in IT Practitioner \(DDM\) - Somerset College of Arts and Technology) Tj
+T*
+() Tj
+T*
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 8 0 R /Resources << /Font << /F1 9 0 R >> >> >>
+endobj
+8 0 obj
+<< /Length 40 >>
+stream
+BT
+/F1 11 Tf
+14 TL
+50 760 Td
+() Tj
+T*
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000127 00000 n 
+0000000253 00000 n 
+0000002798 00000 n 
+0000002924 00000 n 
+0000005159 00000 n 
+0000005285 00000 n 
+0000005375 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+5445
+%%EOF

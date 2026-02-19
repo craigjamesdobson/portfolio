@@ -1,0 +1,56 @@
+---
+import type { ContactLink } from "../data/cv";
+import ContactIcon from "./ContactIcon.astro";
+
+type Props = {
+  name: string;
+  title: string;
+  location: string;
+  profile: string;
+  contactLinks: readonly ContactLink[];
+};
+
+const { name, title, location, profile, contactLinks } = Astro.props as Props;
+const profileLinks = contactLinks.filter((link) => {
+  const key = link.label.toLowerCase();
+  return key === "email" || key === "github";
+});
+---
+
+<section id="about" class="mb-10 mt-16 reveal" style="--delay: 60ms;">
+  <h1 class="mb-4 font-semibold text-xl">{name}</h1>
+  <div class="[&_p]:mb-6 text-[0.9rem] leading-7">
+    <p>
+      <span class="text-accent">{title} </span>
+      <span class="opacity-60">based in {location}.</span>
+    </p>
+    <p class="text-muted-foreground">{profile}</p>
+  </div>
+
+  <div class="flex flex-wrap gap-3 text-[0.82rem] [&_a]:transition-all [&_a]:duration-200">
+    {
+      profileLinks.map((link) => {
+        const isEmail = link.label.toLowerCase() === "email";
+        return (
+          <a
+            class="inline-flex items-center gap-2 border border-border/70 px-3 py-1.5 opacity-70 hover:opacity-100"
+            href={link.href}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noreferrer noopener" : undefined}
+          >
+            <ContactIcon kind={isEmail ? "email" : "github"} class="h-5 w-5 text-accent" />
+            <span>{link.label}</span>
+          </a>
+        );
+      })
+    }
+    <a class="inline-flex items-center gap-2 border border-accent/50 px-3 py-1.5 text-accent opacity-90 hover:opacity-100" href="/cv/craig-dobson-cv.pdf" download>
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <path d="M7 10l5 5 5-5"></path>
+        <path d="M12 15V3"></path>
+      </svg>
+      <span>Download CV</span>
+    </a>
+  </div>
+</section>

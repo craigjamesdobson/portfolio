@@ -1,58 +1,39 @@
-name: Deploy Static Site
+name: Deploy to Cloudflare Pages
 
 on:
   push:
     tags:
-      - 'v*.*.*'
-    branches-ignore:
-      - '*'  # This ensures that branch pushes do not trigger the workflow
+      - "v*.*.*"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.6.0
+      - uses: actions/checkout@v4
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          
-      - name: DNS Resolution
-        env:
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        run: |
-          if [[ "$REMOTE_HOST" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "Skipping DNS resolution for IP address."
-          else
-            nslookup "$REMOTE_HOST"
-          fi
+          fetch-depth: 0
 
-      - name: Check Port Connectivity
-        env:
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        run: |
-          nc -zv "$REMOTE_HOST" 22 || echo "Port 22 is not open on $REMOTE_HOST"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: Create .ssh directory
-        run: mkdir -p ~/.ssh
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
-      - name: Add remote server to known_hosts
-        env:
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+      - name: Ensure tag commit is on main
         run: |
-          if [ -z "$REMOTE_HOST" ]; then
-            echo "REMOTE_HOST is not set. Skipping known_hosts update."
-            exit 1
-          fi
-          ssh-keyscan -H "$REMOTE_HOST" >> ~/.ssh/known_hosts || echo "ssh-keyscan failed"
+          git fetch origin main --depth=1
+          git merge-base --is-ancestor "$GITHUB_SHA" "origin/main"
 
-      - name: Deploy to Server
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm build
         env:
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_DIR: ${{ secrets.REMOTE_DIR }}
-        run: |
-          rsync -avz -O --delete --exclude='.git' --exclude='.github' --no-perms ./ "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR"
+          SITE_URL: https://craigjamesdobson.dev
+
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=portfolio --branch=main

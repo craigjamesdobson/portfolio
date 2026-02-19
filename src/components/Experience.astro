@@ -1,0 +1,40 @@
+---
+import type { ExperienceEntry } from "../data/cv";
+
+type Props = {
+  entries: readonly ExperienceEntry[];
+};
+
+const { entries } = Astro.props as Props;
+---
+
+<section id="experience" class="scroll-mt-20 mt-14 reveal" style="--delay: 140ms;">
+  <h2 class="section-title">experience</h2>
+  <div class="space-y-5">
+    {
+      entries.map((entry, index) => (
+        <article>
+          <div class="mb-3 space-y-1 text-[0.95rem]">
+            <p class="opacity-50 text-[0.8rem] uppercase tracking-[0.08em]">{entry.period}</p>
+            <div>
+              <h3 class="inline font-medium text-accent">{entry.role}</h3>
+              <span class="opacity-50 mx-2">|</span>
+              <p class="inline opacity-70">{entry.company}</p>
+            </div>
+          </div>
+          <ul class="space-y-2 text-[0.85rem] leading-7 opacity-60">
+            {
+              entry.highlights.map((highlight) => (
+                <li class="flex gap-3">
+                  <span class="text-accent" aria-hidden="true">-</span>
+                  <span>{highlight}</span>
+                </li>
+              ))
+            }
+          </ul>
+          {index < entries.length - 1 && <div class="h-px bg-border my-6"></div>}
+        </article>
+      ))
+    }
+  </div>
+</section>

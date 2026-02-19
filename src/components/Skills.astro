@@ -1,0 +1,32 @@
+---
+import type { FocusArea } from "../data/cv";
+
+type Props = {
+  areas: readonly FocusArea[];
+};
+
+const { areas } = Astro.props as Props;
+---
+
+<section id="skills" class="scroll-mt-20 mt-14 reveal" style="--delay: 260ms;">
+  <h2 class="section-title">technical focus</h2>
+  <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
+    {
+      areas.map((area) => (
+        <article class="border border-border p-4">
+          <h3 class="mb-3 text-[0.75rem] uppercase tracking-[0.08em] opacity-60">{area.heading}</h3>
+          <ul class="space-y-1 text-[0.82rem] leading-6 opacity-75">
+            {
+              area.items.map((item) => (
+                <li class="flex gap-2">
+                  <span class="text-accent" aria-hidden="true">-</span>
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </article>
+      ))
+    }
+  </div>
+</section>
